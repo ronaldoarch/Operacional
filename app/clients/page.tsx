@@ -373,10 +373,12 @@ export default function ClientsPage() {
 
   const openEditModal = (client: Client) => {
     setSelectedClient(client)
-    setContractValue((client.contractValue / 100).toString())
-    setResponsible(client.responsible)
-    setNiche(client.niche)
-    setNotes(client.notes)
+    // Converter de centavos para reais, se valor > 0
+    const valueInReais = client.contractValue > 0 ? (client.contractValue / 100) : 0
+    setContractValue(valueInReais > 0 ? valueInReais.toString() : '')
+    setResponsible(client.responsible || '')
+    setNiche(client.niche || 'generic')
+    setNotes(client.notes || '')
     setShowModal(true)
   }
 
@@ -603,10 +605,13 @@ export default function ClientsPage() {
                   <input
                     type="number"
                     step="0.01"
+                    min="0"
+                    placeholder="Ex: 5000.00"
                     value={contractValue}
                     onChange={(e) => setContractValue(e.target.value)}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                   />
+                  <p className="mt-1 text-xs text-gray-500">Digite o valor em reais (Ex: 5000 para R$ 5.000,00)</p>
                 </div>
                 
                 <div>
