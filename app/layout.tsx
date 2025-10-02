@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import AlertsBadge from './components/AlertsBadge'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,22 +27,32 @@ export default function RootLayout({
                     Traffic Ops
                   </h1>
                 </div>
-                <div className="flex items-center space-x-8">
+                <div className="flex items-center space-x-4">
                   <a href="/" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                     Dashboard
-                  </a>
-                  <a href="/accounts" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                    Contas
                   </a>
                   <a href="/clients" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                     Clientes
                   </a>
-                  <a href="/metrics" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                    Métricas
+                  <a href="/accounts" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                    Contas
+                  </a>
+                  <a href="/financeiro" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                    💰 Financeiro
+                  </a>
+                  <a href="/okrs" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                    🎯 OKRs
+                  </a>
+                  <a href="/sugestoes" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                    💡 Sugestões
+                  </a>
+                  <a href="/relatorios" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                    📊 Relatórios
                   </a>
                   <a href="/settings" className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                     Configurações
                   </a>
+                  <AlertsBadge />
                 </div>
               </div>
             </div>
