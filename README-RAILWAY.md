@@ -143,3 +143,6 @@ npm run dev
 - **Logs**: Railway Dashboard
 - **Documentação**: [Railway Docs](https://docs.railway.app)
 - **Telegram Bot API**: [Bot API Docs](https://core.telegram.org/bots/api)
+
+
+

@@ -153,3 +153,6 @@ curl https://your-bot-app.railway.app/health
 - **SSL**: Automático via Railway
 - **Escalabilidade**: Automática via Railway
 - **Backup**: Configure backup do MongoDB
+
+
+

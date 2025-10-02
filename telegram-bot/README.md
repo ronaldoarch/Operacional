@@ -132,3 +132,4 @@ Para problemas ou dúvidas:
 1. Verifique os logs do console
 2. Teste a conexão com as APIs
 3. Confirme as configurações do .env
+

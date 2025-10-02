@@ -16,3 +16,4 @@ echo ✅ Bot iniciado! Agora você pode usar o Telegram Bot.
 echo 📱 Envie /start para @ReidoblackBot
 echo.
 pause
+

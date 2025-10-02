@@ -1,7 +1,7 @@
 // Configurações do Telegram Bot
 module.exports = {
   // Token do bot (mantenha seguro!)
-  BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || '8396159417:AAGgLAZDj2MPPfmrZvocRKozS7du6gpQ8hY',
+  BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
   
   // URL da API do sistema principal
   SYSTEM_API_URL: process.env.SYSTEM_API_URL || 'http://localhost:3000/api',

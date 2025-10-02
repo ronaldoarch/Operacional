@@ -102,3 +102,6 @@ runChecks().catch(error => {
   console.error('❌ Erro durante a configuração:', error);
   process.exit(1);
 });
+
+
+

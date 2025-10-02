@@ -68,3 +68,4 @@ Sistema operacional para gestão de campanhas Meta Ads.
 
 // Executar setup
 setupBot();
+

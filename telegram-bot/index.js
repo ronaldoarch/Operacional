@@ -6,10 +6,16 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 // Configurações
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8396159417:AAGgLAZDj2MPPfmrZvocRKozS7du6gpQ8hY';
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const SYSTEM_API_URL = process.env.SYSTEM_API_URL || 'http://localhost:3000/api';
 const AUTHORIZED_USERS = process.env.AUTHORIZED_USERS ? process.env.AUTHORIZED_USERS.split(',') : ['5767285166'];
 const NODE_ENV = process.env.NODE_ENV || 'development';
+
+// Validar token obrigatório
+if (!BOT_TOKEN) {
+  console.error('❌ ERRO: TELEGRAM_BOT_TOKEN não configurado!');
+  process.exit(1);
+}
 
 // Criar bot
 const bot = new TelegramBot(BOT_TOKEN, { polling: true });

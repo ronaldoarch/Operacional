@@ -29,7 +29,17 @@ Sistema operacional completo para gestão de campanhas Meta Ads com integração
 
 ## 🚀 Quick Start
 
-### 1. Instalação
+### Deploy em Produção
+
+**Railway** (Recomendado) ou **VPS** (Docker):
+- 📖 [**DEPLOY-2-PROJETOS.md**](DEPLOY-2-PROJETOS.md) - Deploy Railway (Sistema + Bot)
+- 📖 [**GUIA-DEPLOY.md**](GUIA-DEPLOY.md) - Instruções completas e troubleshooting
+- 📄 [**VARIAVEIS-RAILWAY.txt**](VARIAVEIS-RAILWAY.txt) - Variáveis prontas para copiar
+- ✅ Healthcheck otimizado para Railway
+- 🐳 Dockerfile pronto para VPS
+- 🤖 Bot do Telegram integrado
+
+### 1. Instalação Local
 ```bash
 # Clone o repositório
 git clone <repo-url>
