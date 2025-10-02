@@ -1,3 +1,5 @@
-Trigger redeploy - force variables load
-Timestamp: 2025-10-02T16:30:00Z
+Trigger redeploy - FORCE REBUILD WITH VARIABLES
+Timestamp: 2025-10-02T16:50:00Z
+Build number: 2
+IMPORTANT: Variables must be loaded during build time!
 
