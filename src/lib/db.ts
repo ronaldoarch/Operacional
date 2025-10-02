@@ -20,7 +20,14 @@ async function connectDB() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(env.MONGODB_URI, opts).then((mongoose) => {
+    // DEBUG: Log da string de conexão (mascarar senha)
+    const mongoUri = env.MONGODB_URI;
+    const maskedUri = mongoUri.replace(/:[^:@]+@/, ':****@');
+    console.log('[DB] Tentando conectar com:', maskedUri);
+    console.log('[DB] Todas as env vars disponíveis:', Object.keys(process.env).filter(k => k.includes('MONGO')));
+
+    cached.promise = mongoose.connect(mongoUri, opts).then((mongoose) => {
+      console.log('[DB] Conexão estabelecida com sucesso!');
       return mongoose;
     });
   }
