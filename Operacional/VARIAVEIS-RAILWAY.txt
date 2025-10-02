@@ -1,0 +1,95 @@
+═══════════════════════════════════════════════════════════════
+  VARIÁVEIS PARA COPIAR E COLAR NO RAILWAY
+═══════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────┐
+│  PROJETO 1: SISTEMA PRINCIPAL (Next.js)                     │
+└─────────────────────────────────────────────────────────────┘
+
+Cole isso no Railway → Variables (ou Raw Editor):
+
+MONGODB_URI=mongodb+srv://seu_usuario:sua_senha@cluster.mongodb.net/traffic-ops?retryWrites=true&w=majority
+META_APP_ID=seu_app_id_aqui
+META_APP_SECRET=seu_app_secret_aqui
+META_ACCESS_TOKEN=seu_token_long_lived_aqui
+NODE_ENV=production
+NEXTAUTH_SECRET=df8a9sd7f89a7sdf897asdf897asdf897asdf897asdf89
+CURRENCY_DEFAULT=BRL
+LOW_BALANCE_THRESHOLD=50
+
+⚠️  SUBSTITUA:
+  - MONGODB_URI: sua string do MongoDB Atlas
+  - META_APP_ID: ID da sua Meta App
+  - META_APP_SECRET: Secret da sua Meta App
+  - META_ACCESS_TOKEN: Token de longa duração
+
+───────────────────────────────────────────────────────────────
+
+┌─────────────────────────────────────────────────────────────┐
+│  PROJETO 2: BOT DO TELEGRAM                                 │
+│  ⚠️  IMPORTANTE: Root Directory = telegram-bot               │
+└─────────────────────────────────────────────────────────────┘
+
+Cole isso no Railway → Variables (ou Raw Editor):
+
+TELEGRAM_BOT_TOKEN=8396159417:AAGgLAZDj2MPPfmrZvocRKozS7du6gpQ8hY
+SYSTEM_API_URL=https://SEU-APP-DO-PROJETO-1.railway.app/api
+AUTHORIZED_USERS=5767285166
+NODE_ENV=production
+PORT=3002
+
+⚠️  SUBSTITUA:
+  - SYSTEM_API_URL: URL do Projeto 1 + /api
+    Exemplo: https://operacional-production.up.railway.app/api
+
+───────────────────────────────────────────────────────────────
+
+┌─────────────────────────────────────────────────────────────┐
+│  CONFIGURAR WEBHOOK DO TELEGRAM (DEPOIS DO DEPLOY)         │
+└─────────────────────────────────────────────────────────────┘
+
+Após os 2 projetos estarem rodando, cole isso no NAVEGADOR:
+
+https://api.telegram.org/bot8396159417:AAGgLAZDj2MPPfmrZvocRKozS7du6gpQ8hY/setWebhook?url=https://SEU-BOT.railway.app/webhook
+
+⚠️  SUBSTITUA:
+  - SEU-BOT.railway.app: URL do Projeto 2 (bot)
+
+Deve retornar:
+{
+  "ok": true,
+  "result": true,
+  "description": "Webhook was set"
+}
+
+───────────────────────────────────────────────────────────────
+
+✅ CHECKLIST:
+
+PROJETO 1:
+  [ ] Criar projeto no Railway
+  [ ] Conectar repositório GitHub
+  [ ] Root Directory: (VAZIO - deixar em branco)
+  [ ] Adicionar variáveis acima
+  [ ] Aguardar deploy
+  [ ] Testar: https://seu-app.railway.app/api/health
+  [ ] Anotar URL do projeto
+
+PROJETO 2:
+  [ ] Criar SEGUNDO projeto no Railway
+  [ ] Conectar o MESMO repositório
+  [ ] Root Directory: telegram-bot
+  [ ] Adicionar variáveis acima (com URL do Projeto 1)
+  [ ] Aguardar deploy
+  [ ] Configurar webhook no navegador
+  [ ] Testar bot no Telegram: /start
+
+───────────────────────────────────────────────────────────────
+
+📚 DOCUMENTAÇÃO COMPLETA:
+   - DEPLOY-2-PROJETOS.md (instruções detalhadas)
+   - GUIA-DEPLOY.md (troubleshooting)
+
+═══════════════════════════════════════════════════════════════
+
+
