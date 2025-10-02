@@ -77,10 +77,14 @@ const OKRSchema = new mongoose.Schema({
   }
 });
 
-// Calcular progresso automaticamente
-OKRSchema.methods.calculateProgress = function() {
+// Middleware para calcular progresso
+OKRSchema.pre('save', function(next) {
+  this.updatedAt = new Date();
+  
+  // Calcular progresso
   if (!this.objectives || this.objectives.length === 0) {
     this.progress = 0;
+    next();
     return;
   }
 
@@ -105,12 +109,6 @@ OKRSchema.methods.calculateProgress = function() {
   });
 
   this.progress = Math.round((completedKRs / totalKRs) * 100);
-};
-
-// Middleware
-OKRSchema.pre('save', function(next) {
-  this.updatedAt = new Date();
-  this.calculateProgress();
   next();
 });
 
