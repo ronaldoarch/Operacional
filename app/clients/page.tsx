@@ -139,6 +139,7 @@ export default function ClientsPage() {
     if (!selectedClient) return
 
     try {
+      // Atualizar dados do contrato
       const response = await fetch('/api/clients/update-contract', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -151,13 +152,44 @@ export default function ClientsPage() {
         })
       })
 
+      // Atualizar perfil do cliente (satisfação e características)
+      await fetch(`/api/clients/${selectedClient._id}/profile`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          satisfactionLevel: satisfaction,
+          traits: {
+            behavior: behaviorTraits,
+            communication: communicationTraits,
+            payment: paymentTraits
+          }
+        })
+      })
+
+      // Criar pagamento se data foi definida
+      if (nextPaymentDate && contractValue) {
+        await fetch('/api/payments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientId: selectedClient._id,
+            dueDate: nextPaymentDate,
+            amount: parseFloat(contractValue) * 100, // Converter para centavos
+            paymentMethod: 'pix',
+            recurrence: 'monthly'
+          })
+        })
+      }
+
       if (response.ok) {
         await loadClients()
         setShowModal(false)
         resetForm()
+        alert('Cliente atualizado com sucesso!')
       }
     } catch (error) {
       console.error('Error updating contract:', error)
+      alert('Erro ao atualizar cliente')
     }
   }
 
