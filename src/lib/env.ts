@@ -1,9 +1,24 @@
+// Usar getters para ler variáveis em RUNTIME, não em build time
 export const env = {
-  MONGODB_URI: process.env.MONGODB_URI || "mongodb://localhost:27017/traffic_ops",
-  META_APP_ID: process.env.META_APP_ID || "",
-  META_APP_SECRET: process.env.META_APP_SECRET || "",
-  META_ACCESS_TOKEN: process.env.META_ACCESS_TOKEN || "",
-  ALERTS_WEBHOOK_URL: process.env.ALERTS_WEBHOOK_URL || "",
-  CURRENCY_DEFAULT: process.env.CURRENCY_DEFAULT || "BRL",
-  LOW_BALANCE_THRESHOLD: Number(process.env.LOW_BALANCE_THRESHOLD) || 50,
-} as const;
+  get MONGODB_URI() {
+    return process.env.MONGODB_URI || "mongodb://localhost:27017/traffic_ops";
+  },
+  get META_APP_ID() {
+    return process.env.META_APP_ID || "";
+  },
+  get META_APP_SECRET() {
+    return process.env.META_APP_SECRET || "";
+  },
+  get META_ACCESS_TOKEN() {
+    return process.env.META_ACCESS_TOKEN || "";
+  },
+  get ALERTS_WEBHOOK_URL() {
+    return process.env.ALERTS_WEBHOOK_URL || "";
+  },
+  get CURRENCY_DEFAULT() {
+    return process.env.CURRENCY_DEFAULT || "BRL";
+  },
+  get LOW_BALANCE_THRESHOLD() {
+    return Number(process.env.LOW_BALANCE_THRESHOLD) || 50;
+  },
+};
