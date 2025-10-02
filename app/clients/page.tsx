@@ -85,6 +85,13 @@ export default function ClientsPage() {
   const [status, setStatus] = useState('not_started')
   const [statusComment, setStatusComment] = useState('')
   
+  // Novos estados para perfil
+  const [satisfaction, setSatisfaction] = useState('neutral')
+  const [behaviorTraits, setBehaviorTraits] = useState<string[]>([])
+  const [communicationTraits, setCommunicationTraits] = useState<string[]>([])
+  const [paymentTraits, setPaymentTraits] = useState<string[]>([])
+  const [nextPaymentDate, setNextPaymentDate] = useState('')
+  
   // Estados para adicionar cliente
   const [newClientName, setNewClientName] = useState('')
   const [newClientEmail, setNewClientEmail] = useState('')
@@ -601,6 +608,111 @@ export default function ClientsPage() {
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     rows={3}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                
+                {/* Nível de Satisfação */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Nível de Satisfação</label>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSatisfaction('satisfied')}
+                      className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition ${
+                        satisfaction === 'satisfied'
+                          ? 'bg-green-500 text-white'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      😊 Satisfeito
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSatisfaction('neutral')}
+                      className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition ${
+                        satisfaction === 'neutral'
+                          ? 'bg-yellow-500 text-white'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      😐 Neutro
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSatisfaction('unsatisfied')}
+                      className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition ${
+                        satisfaction === 'unsatisfied'
+                          ? 'bg-red-500 text-white'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      😡 Insatisfeito
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Características */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Características</label>
+                  <div className="space-y-2">
+                    <div className="text-xs text-gray-600 mb-1">Comportamento:</div>
+                    <div className="flex flex-wrap gap-1">
+                      {['Carente', 'Exigente', 'Tranquilo', 'Legal'].map((trait) => (
+                        <button
+                          key={trait}
+                          type="button"
+                          onClick={() => {
+                            setBehaviorTraits(prev =>
+                              prev.includes(trait)
+                                ? prev.filter(t => t !== trait)
+                                : [...prev, trait]
+                            )
+                          }}
+                          className={`px-2 py-1 rounded text-xs transition ${
+                            behaviorTraits.includes(trait)
+                              ? 'bg-blue-500 text-white'
+                              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                          }`}
+                        >
+                          {trait}
+                        </button>
+                      ))}
+                    </div>
+                    
+                    <div className="text-xs text-gray-600 mb-1 mt-2">Pagamento:</div>
+                    <div className="flex flex-wrap gap-1">
+                      {['Pontual', 'Atrasado', 'Negociador'].map((trait) => (
+                        <button
+                          key={trait}
+                          type="button"
+                          onClick={() => {
+                            setPaymentTraits(prev =>
+                              prev.includes(trait)
+                                ? prev.filter(t => t !== trait)
+                                : [...prev, trait]
+                            )
+                          }}
+                          className={`px-2 py-1 rounded text-xs transition ${
+                            paymentTraits.includes(trait)
+                              ? 'bg-green-500 text-white'
+                              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                          }`}
+                        >
+                          {trait}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Data do Próximo Pagamento */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Próximo Pagamento</label>
+                  <input
+                    type="date"
+                    value={nextPaymentDate}
+                    onChange={(e) => setNextPaymentDate(e.target.value)}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
